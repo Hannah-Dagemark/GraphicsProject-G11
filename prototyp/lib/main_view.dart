@@ -21,13 +21,9 @@ class _PageScrollWrapper extends StatelessWidget {
     return Expanded(
       child: ScrollbarTheme(
         data: ScrollbarThemeData(
-          // Makes the scrollbar thicker
           thickness: WidgetStateProperty.all(12.0),
-          // Controls the opacity via the color (0xFF is full opacity)
           thumbColor: WidgetStateProperty.all(Colors.grey.shade700),
-          // Makes the corners rounded
           radius: const Radius.circular(10),
-          // Ensures the track remains invisible but the thumb is prominent
           trackVisibility: WidgetStateProperty.all(false),
         ),
         child: Scrollbar(
