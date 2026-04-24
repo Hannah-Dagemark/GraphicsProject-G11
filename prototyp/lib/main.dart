@@ -16,7 +16,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Consumer<AppModel>(
@@ -34,7 +33,6 @@ class MyApp extends StatelessWidget {
           ),
           builder: (context, child) {
             return MediaQuery(
-              // Scale text and layout based on the AppModel
               data: MediaQuery.of(
                 context,
               ).copyWith(textScaler: TextScaler.linear(scale)),

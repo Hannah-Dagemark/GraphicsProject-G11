@@ -3,7 +3,7 @@ import 'package:prototyp/model/page_index.dart';
 
 class AppModel extends ChangeNotifier {
   PageIndex _currentPage = PageIndex.home;
-  double _zoomLevel = 1.0;
+  double _zoomLevel = 1.5;
 
   AppModel() {
     setCurrentPage(PageIndex.home);
@@ -18,8 +18,7 @@ class AppModel extends ChangeNotifier {
   }
 
   void setZoom(double zoomLevel) {
-    // Clamp to prevent zoom being too small or too large
-    _zoomLevel = zoomLevel.clamp(0.5, 3.0);
+    _zoomLevel = zoomLevel.clamp(1.0, 3.0);
     notifyListeners();
   }
 }
