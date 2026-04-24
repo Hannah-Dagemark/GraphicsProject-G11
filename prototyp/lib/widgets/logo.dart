@@ -10,8 +10,8 @@ class Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     var appModel = Provider.of<AppModel>(context);
     return TextButton(
-      child: Text("iMat", style: Theme.of(context).textTheme.titleLarge),
       onPressed: () => {appModel.setCurrentPage(PageIndex.home)},
+      child: Text("iMat", style: Theme.of(context).textTheme.displayMedium),
     );
   }
 }

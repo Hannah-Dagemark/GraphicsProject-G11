@@ -8,12 +8,18 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        _NavbarButton(title: "Din profil", page: PageIndex.profile),
-        _NavbarButton(title: "Handla", page: PageIndex.browse),
-        _NavbarButton(title: "Kassa", page: PageIndex.checkout),
-      ],
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.symmetric(horizontal: BorderSide(width: 0.5, color: Colors.black)),
+      ),
+      child: Row(
+        spacing: 10,
+        children: [
+          _NavbarButton(title: "Din profil", page: PageIndex.profile),
+          _NavbarButton(title: "Handla", page: PageIndex.browse),
+          _NavbarButton(title: "Kassa", page: PageIndex.checkout),
+        ],
+      ),
     );
   }
 }
@@ -28,18 +34,20 @@ class _NavbarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var appModel = Provider.of<AppModel>(context);
     return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
-          color: (appModel.currentPage == page) ? Colors.grey : Colors.white,
-        ),
-        child: TextButton(
-          child: Padding(
-            padding: .all(5),
-            child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+      child: TextButton(
+        onPressed: () => {appModel.setCurrentPage(page)},
+        style: ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll(
+            (appModel.currentPage == page) ? Colors.grey : Colors.white,
           ),
-          onPressed: () => {appModel.setCurrentPage(page)},
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(width: 1, color: Colors.black),
+            ),
+          ),
         ),
+        child: Text(title, style: Theme.of(context).textTheme.titleLarge),
       ),
     );
   }
