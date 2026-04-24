@@ -11,7 +11,7 @@ class Logo extends StatelessWidget {
     var appModel = Provider.of<AppModel>(context);
     return TextButton(
       onPressed: () => {appModel.setCurrentPage(PageIndex.home)},
-      child: Text("iMat", style: Theme.of(context).textTheme.displayMedium),
+      child: Text("iMat", style: TextStyle(color: Colors.black, fontSize: 30)),
     );
   }
 }
