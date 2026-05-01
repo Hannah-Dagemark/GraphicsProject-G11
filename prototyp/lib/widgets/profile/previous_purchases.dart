@@ -28,14 +28,13 @@ class StoreItem {
   }
 }
 
-class PreviousPurchase extends StatelessWidget {
+class PreviousPurchase {
   final DateTime date;
   final List<StoreItem> items;
 
-  const PreviousPurchase({super.key, required this.date, required this.items});
+  const PreviousPurchase({required this.date, required this.items});
 
-  @override
-  Widget build(BuildContext context) {
+  Widget asWidget(BuildContext context) {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(
@@ -54,7 +53,6 @@ class PreviousPurchase extends StatelessWidget {
         theme: ExpandableThemeData(headerAlignment: .center),
         collapsed: Table(children: []),
         expanded: Table(
-          columnWidths: const {0: IntrinsicColumnWidth(), 1: FlexColumnWidth()},
           border: TableBorder(
             horizontalInside: BorderSide(color: Colors.grey),
             verticalInside: BorderSide(color: Colors.grey),
@@ -67,15 +65,17 @@ class PreviousPurchase extends StatelessWidget {
 }
 
 class PreviousPurchases extends StatelessWidget {
-  final List<Widget> children;
+  final List<PreviousPurchase> purchases;
 
-  const PreviousPurchases({super.key, required this.children});
+  const PreviousPurchases({super.key, required this.purchases});
 
   @override
   Widget build(BuildContext context) {
     return TitledBox(
       title: "Dina tidigare köp",
-      child: Column(children: children),
+      child: Column(
+        children: purchases.map((p) => p.asWidget(context)).toList(),
+      ),
     );
   }
 }
