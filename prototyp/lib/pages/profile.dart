@@ -11,7 +11,7 @@ class ProfilePage extends StatelessWidget {
       mainAxisAlignment: .spaceEvenly,
       crossAxisAlignment: .start,
       children: [
-        PreviousPurchases(
+        Flexible(child: PreviousPurchases(
           purchases: [
             PreviousPurchase(
               date: DateTime.now(),
@@ -33,8 +33,8 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ],
-        ),
-        ShoppingLists(),
+        )),
+        Flexible(child: ShoppingLists()),
       ],
     );
   }
