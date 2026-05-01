@@ -53,7 +53,6 @@ class PreviousPurchase {
         theme: ExpandableThemeData(headerAlignment: .center),
         collapsed: Table(children: []),
         expanded: Table(
-          columnWidths: const {0: IntrinsicColumnWidth(), 1: FlexColumnWidth()},
           border: TableBorder(
             horizontalInside: BorderSide(color: Colors.grey),
             verticalInside: BorderSide(color: Colors.grey),
