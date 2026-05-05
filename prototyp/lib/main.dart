@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:prototyp/main_view.dart';
 import 'package:prototyp/model/app_model.dart';
+import 'package:prototyp/model/browsecategory_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AppModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AppModel()),
+        ChangeNotifierProvider(create: (context) => BrowsecategoryModel()),
+      ],
       child: const MyApp(),
     ),
   );
