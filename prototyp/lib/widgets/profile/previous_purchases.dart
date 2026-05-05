@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:prototyp/app_theme.dart';
 import 'package:prototyp/widgets/titled_box.dart';
 
 class StoreItem {
@@ -19,10 +20,10 @@ class StoreItem {
       decoration: BoxDecoration(border: .all(color: Colors.grey)),
       children: [
         Padding(
-          padding: .all(5),
+          padding: .all(AppTheme.paddingTiny),
           child: Text(amount.toString(), textAlign: .center),
         ),
-        Padding(padding: .all(5), child: Text(name)),
+        Padding(padding: .all(AppTheme.paddingTiny), child: Text(name)),
       ],
     );
   }
@@ -39,7 +40,7 @@ class PreviousPurchase extends StatelessWidget {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: .circular(AppTheme.radiusLarge),
         side: const BorderSide(color: Colors.grey, width: 1),
       ),
       clipBehavior: .antiAlias,

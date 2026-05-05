@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototyp/app_theme.dart';
 import 'package:prototyp/model/app_model.dart';
 import 'package:prototyp/model/page_index.dart';
 import 'package:prototyp/pages/browse.dart';
@@ -7,6 +8,7 @@ import 'package:prototyp/pages/home.dart';
 import 'package:prototyp/pages/profile.dart';
 import 'package:prototyp/widgets/logo.dart';
 import 'package:prototyp/widgets/navbar.dart';
+import 'package:prototyp/widgets/zoom_control.dart';
 import 'package:provider/provider.dart';
 
 class _PageScrollWrapper extends StatelessWidget {
@@ -18,24 +20,7 @@ class _PageScrollWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ScrollbarTheme(
-        data: ScrollbarThemeData(
-          thickness: WidgetStateProperty.all(12.0),
-          thumbColor: WidgetStateProperty.all(Colors.grey.shade700),
-          radius: const Radius.circular(10),
-          trackVisibility: WidgetStateProperty.all(false),
-        ),
-        child: Scrollbar(
-          controller: _scrollController,
-          thumbVisibility: true,
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Padding(padding: EdgeInsets.only(top: 20), child: child),
-          ),
-        ),
-      ),
-    );
+    return Expanded(child: AppTheme.scrollbarTheme(_scrollController, child));
   }
 }
 
@@ -50,14 +35,17 @@ class MainView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Logo(),
+        actions: [ZoomControl()],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .start,
-          children: [
-            Navbar(),
-            _PageScrollWrapper(child: _getPageWidget(currentPage)),
-          ],
+      body: SizedBox.expand(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Navbar(),
+              _PageScrollWrapper(child: _getPageWidget(currentPage)),
+            ],
+          ),
         ),
       ),
     );

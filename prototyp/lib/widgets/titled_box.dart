@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototyp/app_theme.dart';
 
 class TitledBox extends StatelessWidget {
   final String title;
@@ -15,11 +16,11 @@ class TitledBox extends StatelessWidget {
         Card(
           elevation: 3,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: .circular(AppTheme.radiusLarge),
             side: const BorderSide(color: Colors.grey, width: 2),
           ),
           clipBehavior: .antiAlias,
-          child: Container(padding: .all(5), child: child),
+          child: Container(padding: .all(AppTheme.paddingTiny), child: child),
         ),
       ],
     );

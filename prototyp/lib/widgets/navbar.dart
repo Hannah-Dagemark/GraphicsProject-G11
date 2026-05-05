@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototyp/app_theme.dart';
 import 'package:prototyp/model/app_model.dart';
 import 'package:prototyp/model/page_index.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,9 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.symmetric(horizontal: BorderSide(width: 0.5, color: Colors.black)),
+        border: Border.symmetric(
+          horizontal: BorderSide(width: 0.5, color: Colors.black),
+        ),
       ),
       child: Row(
         spacing: 10,
@@ -42,7 +45,7 @@ class _NavbarButton extends StatelessWidget {
           ),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: .circular(AppTheme.radiusMedium),
               side: const BorderSide(width: 1, color: Colors.black),
             ),
           ),
