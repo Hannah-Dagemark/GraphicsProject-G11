@@ -12,7 +12,7 @@ class TitledBox extends StatelessWidget {
     return Column(
       spacing: 10,
       children: [
-        Text(title, style: Theme.of(context).textTheme.displaySmall),
+        Text(title, style: TextTheme.of(context).displaySmall),
         Card(
           elevation: 3,
           shape: RoundedRectangleBorder(

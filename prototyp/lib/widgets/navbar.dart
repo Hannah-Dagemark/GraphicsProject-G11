@@ -50,7 +50,7 @@ class _NavbarButton extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+        child: Text(title, style: TextTheme.of(context).titleLarge),
       ),
     );
   }

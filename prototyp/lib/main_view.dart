@@ -29,11 +29,11 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = Provider.of<AppModel>(context, listen: true);
-    var currentPage = appState.currentPage;
+    var appModel = Provider.of<AppModel>(context, listen: true);
+    var currentPage = appModel.currentPage;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: ColorScheme.of(context).inversePrimary,
         title: Logo(),
         actions: [ZoomControl()],
       ),

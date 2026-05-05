@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           title: 'iMat',
           theme: ThemeData(
             colorScheme: AppTheme.colorScheme,
-            textTheme: Theme.of(context).textTheme.apply(
+            textTheme: TextTheme.of(context).apply(
               bodyColor: Colors.black,
               displayColor: Colors.black,
             ),

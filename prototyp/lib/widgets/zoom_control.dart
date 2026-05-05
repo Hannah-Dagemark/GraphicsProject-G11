@@ -8,10 +8,10 @@ class ZoomControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<AppModel>(context, listen: true);
-    final pct = (model.zoomLevel * 100).round();
-    final atMin = model.zoomLevel <= AppModel.zoomLevelMin;
-    final atMax = model.zoomLevel >= AppModel.zoomLevelMax;
+    final appModel = Provider.of<AppModel>(context, listen: true);
+    final pct = (appModel.zoomLevel * 100).round();
+    final atMin = appModel.zoomLevel <= AppModel.zoomLevelMin;
+    final atMax = appModel.zoomLevel >= AppModel.zoomLevelMax;
 
     return Container(
       margin: .all(AppTheme.paddingSmall),
@@ -29,7 +29,7 @@ class ZoomControl extends StatelessWidget {
               borderRadius: .horizontal(
                 left: .circular(AppTheme.radiusSmall),
               ),
-              onTap: () => model.setZoom(AppModel.zoomLevelDefault),
+              onTap: () => appModel.setZoom(AppModel.zoomLevelDefault),
               child: Padding(
                 padding: .symmetric(horizontal: AppTheme.paddingSmall),
                 child: Row(
@@ -37,7 +37,7 @@ class ZoomControl extends StatelessWidget {
                   spacing: AppTheme.paddingTiny,
                   children: [
                     const Icon(Icons.search),
-                    model.zoomCancelWrapper(
+                    appModel.zoomCancelWrapper(
                       context,
                       Text('$pct%', style: TextTheme.of(context).titleLarge),
                     ),
@@ -51,7 +51,7 @@ class ZoomControl extends StatelessWidget {
             icon: Icons.remove,
             tooltip: 'Zooma ut (Ctrl -)',
             enabled: !atMin,
-            onTap: () => model.zoomOut(),
+            onTap: () => appModel.zoomOut(),
             isLeft: false,
             isRight: false,
           ),
@@ -60,7 +60,7 @@ class ZoomControl extends StatelessWidget {
             icon: Icons.add,
             tooltip: 'Zooma in (Ctrl +)',
             enabled: !atMax,
-            onTap: () => model.zoomIn(),
+            onTap: () => appModel.zoomIn(),
             isLeft: false,
             isRight: true,
           ),
