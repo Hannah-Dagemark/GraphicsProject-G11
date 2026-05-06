@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
         Text(
           'Välkommen tillbaka,\nkära kund!',
           textAlign: .center,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: TextTheme.of(context).headlineMedium,
         ),
       ],
     );
