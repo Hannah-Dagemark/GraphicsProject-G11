@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:prototyp/main_view.dart';
 import 'package:prototyp/model/app_model.dart';
+import 'package:prototyp/model/imat/imat_data_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:prototyp/widgets/checkout/checkout_controller.dart';
 
@@ -11,6 +12,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => AppModel()),
         ChangeNotifierProvider(create: (context) => CheckoutController()),
+        ChangeNotifierProvider(create: (context) => ImatDataHandler()),
       ],
       child: const MyApp(),
     ),
