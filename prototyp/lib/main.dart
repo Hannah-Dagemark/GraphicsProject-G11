@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:prototyp/app_theme.dart';
 import 'package:prototyp/main_view.dart';
 import 'package:prototyp/model/app_model.dart';
+import 'package:prototyp/widgets/zoomable_frame.dart';
+import 'package:prototyp/model/browsecategory_model.dart';
 import 'package:prototyp/model/imat/imat_data_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:prototyp/widgets/checkout/checkout_controller.dart';
@@ -13,6 +16,7 @@ void main() {
         ChangeNotifierProvider(create: (context) => AppModel()),
         ChangeNotifierProvider(create: (context) => CheckoutController()),
         ChangeNotifierProvider(create: (context) => ImatDataHandler()),
+        ChangeNotifierProvider(create: (context) => BrowsecategoryModel()),
       ],
       child: const MyApp(),
     ),
@@ -26,40 +30,33 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AppModel>(
       builder: (context, appModel, child) {
-        final double scale = appModel.zoomLevel;
         return MaterialApp(
           title: 'iMat',
           theme: ThemeData(
-            colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-            textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Colors.black,
-              displayColor: Colors.black,
-              fontSizeFactor: appModel.zoomLevel,
-            ),
+            colorScheme: AppTheme.colorScheme,
+            textTheme: TextTheme.of(
+              context,
+            ).apply(bodyColor: Colors.black, displayColor: Colors.black),
           ),
           builder: (context, child) {
-            return MediaQuery(
-              data: MediaQuery.of(
-                context,
-              ).copyWith(textScaler: TextScaler.linear(scale)),
-              child: child!,
-            );
+            return appModel.zoomWrapper(context, child!);
           },
           home: CallbackShortcuts(
             bindings: {
               const SingleActivator(LogicalKeyboardKey.add, control: true): () {
-                final model = Provider.of<AppModel>(context, listen: false);
-                model.setZoom(model.zoomLevel + 0.1);
+                appModel.zoomIn();
               },
               const SingleActivator(
                 LogicalKeyboardKey.minus,
                 control: true,
               ): () {
-                final model = Provider.of<AppModel>(context, listen: false);
-                model.setZoom(model.zoomLevel - 0.1);
+                appModel.zoomOut();
               },
             },
-            child: Focus(autofocus: true, child: MainView()),
+            child: Focus(
+              autofocus: true,
+              child: ZoomableFrame(child: const MainView()),
+            ),
           ),
         );
       },
