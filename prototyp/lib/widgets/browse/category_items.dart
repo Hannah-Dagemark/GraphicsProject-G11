@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prototyp/model/browsecategory_model.dart';
+import 'package:prototyp/widgets/browse/category_item.dart';
 import 'package:provider/provider.dart';
 
 class CategoryItems extends StatelessWidget {
@@ -14,23 +15,9 @@ class CategoryItems extends StatelessWidget {
       runSpacing: 20,
       children: List.generate(
         50,
-        (i) => SizedBox(
-          width: 100,
-          height: 200,
-          child: Placeholder(
-            child: Column(
-              children: [
-                Text(
-                  browsecategoryModel.currentCategory.label,
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  browsecategoryModel.currentSearch,
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
+        (i) => CategoryItem(
+          label: browsecategoryModel.currentCategory.label,
+          currentSearch: browsecategoryModel.currentSearch,
         ),
       ),
     );
