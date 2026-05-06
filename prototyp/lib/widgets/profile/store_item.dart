@@ -19,7 +19,16 @@ class StoreItem {
           padding: .all(5),
           child: Text(amount.toString(), textAlign: .center),
         ),
-        Padding(padding: .all(5), child: Text(name)),
+        Padding(
+          padding: .all(5),
+          child: Row(
+            children: [
+              Text(name),
+              Spacer(),
+              shoppingList ? Icon(Icons.list_alt) : Column(),
+            ],
+          ),
+        ),
       ],
     );
   }
