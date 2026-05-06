@@ -14,7 +14,7 @@ class _PageScrollWrapper extends StatelessWidget {
 
   final Widget child;
 
-  _PageScrollWrapper({super.key, required this.child});
+  _PageScrollWrapper({required this.child});
 
   @override
   Widget build(BuildContext context) {
