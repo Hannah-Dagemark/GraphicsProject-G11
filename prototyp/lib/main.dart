@@ -4,12 +4,18 @@ import 'package:prototyp/app_theme.dart';
 import 'package:prototyp/main_view.dart';
 import 'package:prototyp/model/app_model.dart';
 import 'package:prototyp/widgets/zoomable_frame.dart';
+import 'package:prototyp/model/browsecategory_model.dart';
 import 'package:provider/provider.dart';
+import 'package:prototyp/widgets/checkout/checkout_controller.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AppModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AppModel()),
+        ChangeNotifierProvider(create: (context) => CheckoutController()),
+        ChangeNotifierProvider(create: (context) => BrowsecategoryModel()),
+      ],
       child: const MyApp(),
     ),
   );

@@ -31,7 +31,7 @@ class _NavbarButton extends StatelessWidget {
   final String title;
 
   final PageIndex page;
-  const _NavbarButton({super.key, required this.title, required this.page});
+  const _NavbarButton({required this.title, required this.page});
 
   @override
   Widget build(BuildContext context) {
