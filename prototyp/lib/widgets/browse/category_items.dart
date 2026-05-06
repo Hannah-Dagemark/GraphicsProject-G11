@@ -16,10 +16,17 @@ class CategoryItems extends StatelessWidget {
       spacing: 20,
       runSpacing: 20,
       children: [
-        for (final product in imatDataHandler.findProductsByCategory(
-          browsecategoryModel.currentCategory,
-        ))
-          CategoryItem(product: product),
+        if (browsecategoryModel.currentSearch.isEmpty) ...[
+          for (final product in imatDataHandler.findProductsByCategory(
+            browsecategoryModel.currentCategory,
+          ))
+            CategoryItem(product: product),
+        ] else ...[
+          for (final product in imatDataHandler.findProducts(
+            browsecategoryModel.currentSearch,
+          ))
+            CategoryItem(product: product),
+        ],
       ],
     );
   }

@@ -5,8 +5,8 @@ class BrowsecategoryModel extends ChangeNotifier {
   ProductCategory _currentCategory = ProductCategory.BREAD;
   String _subcategorySearch = '';
 
-  void setSearch(String category) {
-    _subcategorySearch = category;
+  void setSearch(String search) {
+    _subcategorySearch = search;
     notifyListeners();
   }
 
