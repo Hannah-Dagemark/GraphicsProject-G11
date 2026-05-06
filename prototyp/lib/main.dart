@@ -12,10 +12,6 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => AppModel()),
         ChangeNotifierProvider(create: (context) => CheckoutController()),
-      ],
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => AppModel()),
         ChangeNotifierProvider(create: (context) => BrowsecategoryModel()),
       ],
       child: const MyApp(),
