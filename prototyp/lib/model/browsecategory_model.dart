@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:prototyp/model/imat/product.dart';
 
 class BrowsecategoryModel extends ChangeNotifier {
-  BrowseCategory _currentCategory = BrowseCategory.fruit;
+  ProductCategory _currentCategory = ProductCategory.BREAD;
   String _subcategorySearch = '';
 
   void setSearch(String category) {
@@ -9,26 +10,14 @@ class BrowsecategoryModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setCurrentCategory(BrowseCategory category) {
+  void setCurrentCategory(ProductCategory category) {
     _currentCategory = category;
     notifyListeners();
   }
 
   String get currentSearch => _subcategorySearch;
 
-  BrowseCategory get currentCategory => _currentCategory;
+  ProductCategory get currentCategory => _currentCategory;
 
-  List<BrowseCategory> get categories => BrowseCategory.values;
-}
-
-enum BrowseCategory {
-  fruit('Frukt'),
-  dairy('Mejeri'),
-  deli('Chark'),
-  vegetables('Grönsaker'),
-  bakery('Bageri'),
-  snacks('Snacks');
-
-  final String label;
-  const BrowseCategory(this.label);
+  List<ProductCategory> get categories => ProductCategory.values;
 }
