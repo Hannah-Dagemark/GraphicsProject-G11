@@ -2,12 +2,12 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 class ExpandableTableCard extends StatelessWidget {
-  final String title;
+  final Widget header;
   final List<TableRow> rows;
 
   const ExpandableTableCard({
     super.key,
-    required this.title,
+    required this.header,
     required this.rows,
   });
 
@@ -23,7 +23,7 @@ class ExpandableTableCard extends StatelessWidget {
       child: ExpandablePanel(
         header: Padding(
           padding: .only(left: 10),
-          child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+          child: header,
         ),
         theme: ExpandableThemeData(headerAlignment: .center),
         collapsed: Table(children: []),

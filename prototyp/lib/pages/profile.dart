@@ -39,15 +39,20 @@ class ProfilePage extends StatelessWidget {
         ),
         Flexible(
           child: ShoppingLists(
-            shoppingLists: [ShoppingList(name: "Sockerkaka", items: [
-              StoreItem(name: "Strösocker", amount: 1),
-              StoreItem(name: "Vaniljsocker", amount: 1),
-              StoreItem(name: "Bakpulver", amount: 1),
-              StoreItem(name: "Smör", amount: 1),
-              StoreItem(name: "Vetemjöl", amount: 2),
-              StoreItem(name: "Mjölk", amount: 1),
-              StoreItem(name: "Ägg", amount: 3),
-            ])],
+            shoppingLists: [
+              ShoppingList(
+                name: "Sockerkaka",
+                items: [
+                  StoreItem(name: "Strösocker", amount: 1),
+                  StoreItem(name: "Vaniljsocker", amount: 1),
+                  StoreItem(name: "Bakpulver", amount: 1),
+                  StoreItem(name: "Smör", amount: 1),
+                  StoreItem(name: "Vetemjöl", amount: 2),
+                  StoreItem(name: "Mjölk", amount: 1),
+                  StoreItem(name: "Ägg", amount: 3),
+                ],
+              ),
+            ],
           ),
         ),
       ],
