@@ -5,9 +5,11 @@ class CheckoutController extends ChangeNotifier {
 
   void checkout() {
     hasCheckedOut = true;
+    notifyListeners();
   }
 
   void returnPage() {
     hasCheckedOut = false;
+    notifyListeners();
   }
 }

@@ -11,22 +11,42 @@ class CheckoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<CheckoutController>(context, listen: true);
+    var controller = context.watch<CheckoutController>();
     Widget content1; 
     Widget content2; 
+    VoidCallback checkoutFunction;
+    String buttonText;
 
-    if (controller.hasCheckedOut == false) {
-      content1 = PurchaseList();
-      content2 = PurchaseAccount();
+    if (!controller.hasCheckedOut) {
+      content1 = const PurchaseList();
+      content2 = const PurchaseAccount();
+      checkoutFunction = controller.checkout;
+      buttonText = "Slutför Betalning";
     }
     else {
-      content1 = PurchaseOrder();
-      content2 = PurchaseDetail();
+      content1 = const PurchaseOrder();
+      content2 = const PurchaseDetail();
+      checkoutFunction = controller.returnPage;
+      buttonText = "Tillbaka";
     }
 
-    return Scaffold(
-    backgroundColor: Colors.white,
-    body: Row(children: [content1, content2]),
+    return Expanded(
+      child: Column(children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [content1, SizedBox(width: 120), content2]
+        ),
+        Row(
+          children: [
+            Spacer(), 
+            TextButton(
+              onPressed: checkoutFunction,
+              child: Text(buttonText, style: TextStyle(fontSize: 20))
+            ),
+            SizedBox(width: 30),
+          ],
+        )
+      ])
     );
   }
 }
