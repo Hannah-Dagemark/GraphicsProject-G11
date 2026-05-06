@@ -18,9 +18,17 @@ class CategoryItems extends StatelessWidget {
           width: 100,
           height: 200,
           child: Placeholder(
-            child: Text(
-              browsecategoryModel.currentCategory.label,
-              textAlign: TextAlign.center,
+            child: Column(
+              children: [
+                Text(
+                  browsecategoryModel.currentCategory.label,
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  browsecategoryModel.currentSearch,
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
         ),
