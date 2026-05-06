@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototyp/widgets/profile/shopping_list_indicator.dart';
 
 class StoreItem {
   final String name;
@@ -25,7 +26,7 @@ class StoreItem {
             children: [
               Text(name),
               Spacer(),
-              shoppingList ? Icon(Icons.list_alt) : Column(),
+              shoppingList ? ShoppingListIndicator() : Column(),
             ],
           ),
         ),
