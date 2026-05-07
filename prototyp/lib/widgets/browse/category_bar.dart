@@ -9,7 +9,9 @@ class CategoryBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var browsecategoryModel = Provider.of<BrowsecategoryModel>(context);
 
-    return Row(
+    return Wrap(
+      spacing: 5,
+      runSpacing: 10,
       children: [
         for (final category in browsecategoryModel.categories)
           Expanded(
@@ -24,7 +26,7 @@ class CategoryBar extends StatelessWidget {
                       : Colors.white,
                 ),
               ),
-              child: Text(category.label),
+              child: Text(category.name, textScaler: TextScaler.linear(0.75)),
             ),
           ),
       ],
