@@ -54,8 +54,8 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
 
             suffixIcon: IconButton(
               icon: Icon(
-                Icons.mic,
-                color: _isListening ? Colors.red : Colors.green,
+                _isListening ? Icons.mic : Icons.mic_off,
+                color: _isListening ? Colors.red : Colors.grey,
               ),
               onPressed: () async {
                 if (!_isListening) {
