@@ -7,7 +7,7 @@ import 'package:prototyp/widgets/zoomable_frame.dart';
 import 'package:prototyp/model/browsecategory_model.dart';
 import 'package:prototyp/model/imat/imat_data_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:prototyp/widgets/checkout/checkout_controller.dart';
+import 'package:prototyp/model/checkout_model.dart';
 
 void main() {
   runApp(
