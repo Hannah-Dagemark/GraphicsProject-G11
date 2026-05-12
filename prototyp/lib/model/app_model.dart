@@ -10,6 +10,7 @@ class AppModel extends ChangeNotifier {
   static const _zoomLevelDelta = 0.25;
 
   PageIndex _currentPage = PageIndex.home;
+  bool _cartOpen = false;
   double _zoomLevel = zoomLevelDefault;
   final transformationController = TransformationController();
 
@@ -18,10 +19,16 @@ class AppModel extends ChangeNotifier {
   }
 
   PageIndex get currentPage => _currentPage;
+  bool get cartOpen => _cartOpen;
   double get zoomLevel => _zoomLevel;
 
   void setCurrentPage(PageIndex page) {
     _currentPage = page;
+    notifyListeners();
+  }
+
+  void toogleCart() {
+    _cartOpen = !_cartOpen;
     notifyListeners();
   }
 

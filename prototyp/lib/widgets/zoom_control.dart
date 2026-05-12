@@ -14,11 +14,7 @@ class ZoomControl extends StatelessWidget {
     final atMax = appModel.zoomLevel >= AppModel.zoomLevelMax;
 
     return Container(
-      margin: .all(AppTheme.paddingSmall),
-      decoration: BoxDecoration(
-        color: Colors.black.withAlpha(18),
-        borderRadius: .circular(AppTheme.radiusSmall),
-      ),
+      decoration: AppTheme.appBarButtonBoxDecoration,
       child: Row(
         mainAxisSize: .min,
         crossAxisAlignment: .stretch,
