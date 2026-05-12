@@ -3,16 +3,28 @@ import 'package:prototyp/model/imat/imat_data_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
-class SearchBarWidget extends StatefulWidget {
+class ProductSearchBar extends StatefulWidget {
   final Function(String) onSearch;
 
-  const SearchBarWidget({super.key, required this.onSearch});
+  final Function(String)? onChanged;
+
+  final String hintText;
+
+  final double width;
+
+  const ProductSearchBar({
+    super.key,
+    required this.onSearch,
+    this.onChanged,
+    this.hintText = "Sök efter varor",
+    this.width = 300,
+  });
 
   @override
-  State<SearchBarWidget> createState() => _SearchBarWidgetState();
+  State<ProductSearchBar> createState() => _ProductSearchBarState();
 }
 
-class _SearchBarWidgetState extends State<SearchBarWidget> {
+class _ProductSearchBarState extends State<ProductSearchBar> {
   final TextEditingController _controller = TextEditingController();
   late stt.SpeechToText _speech;
   bool _isListening = false;
@@ -39,7 +51,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 300,
+        width: widget.width,
         child: TextField(
           controller: _controller,
           textInputAction: TextInputAction.search,
@@ -48,8 +60,11 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
 
             FocusScope.of(context).unfocus();
           },
+          onChanged: (value) {
+            widget.onSearch(value);
+          },
           decoration: InputDecoration(
-            hintText: "Sök efter varor",
+            hintText: widget.hintText,
             prefixIcon: const Icon(Icons.search),
 
             suffixIcon: IconButton(
