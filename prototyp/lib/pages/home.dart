@@ -31,6 +31,13 @@ class HomePage extends StatelessWidget {
             var results = iMat.findProducts(query);
 
             iMat.selectSelection(results);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const ProductListPage(title: "Sökresultat"),
+              ),
+            );
           },
         ),
 

@@ -59,7 +59,13 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               ),
               onPressed: () async {
                 if (!_isListening) {
-                  bool available = await _speech.initialize();
+                  bool available = await _speech.initialize(
+                    onStatus: (status) {
+                      if (status == 'done') {
+                        setState(() => _isListening = false);
+                      }
+                    },
+                  );
 
                   if (available) {
                     setState(() => _isListening = true);
