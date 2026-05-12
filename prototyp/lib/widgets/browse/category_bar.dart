@@ -26,7 +26,10 @@ class CategoryBar extends StatelessWidget {
                       : Colors.white,
                 ),
               ),
-              child: Text(category.name, textScaler: TextScaler.linear(0.75)),
+              child: Text(
+                category.name,
+                style: TextTheme.of(context).titleSmall,
+              ),
             ),
           ),
       ],
