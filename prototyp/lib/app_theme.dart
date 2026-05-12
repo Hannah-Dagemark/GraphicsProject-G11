@@ -14,6 +14,13 @@ class AppTheme {
 
   static ColorScheme colorScheme = .fromSeed(seedColor: Colors.deepPurple);
 
+  static Color colorOverlay = Colors.black.withAlpha(50);
+
+  static BoxDecoration appBarButtonBoxDecoration = BoxDecoration(
+    color: Colors.black.withAlpha(20),
+    borderRadius: .circular(AppTheme.radiusSmall),
+  );
+
   static final _scrollbarThemeData = ScrollbarThemeData(
     thickness: .all(12.0),
     thumbColor: .all(Colors.grey.shade700),
