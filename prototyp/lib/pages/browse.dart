@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prototyp/app_theme.dart';
 import 'package:prototyp/model/browsecategory_model.dart';
 import 'package:prototyp/widgets/new_navbar.dart';
-import 'package:prototyp/widgets/product_grid.dart';
-import 'package:prototyp/widgets/product_search_bar.dart';
+import 'package:prototyp/widgets/product_widgets/product_grid.dart';
+import 'package:prototyp/widgets/product_widgets/product_search_bar.dart';
 import 'package:provider/provider.dart';
 
 class BrowsePage extends StatelessWidget {

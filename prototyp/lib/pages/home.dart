@@ -3,7 +3,7 @@ import 'package:prototyp/model/imat/imat_data_handler.dart';
 import 'package:prototyp/pages/product_list_page.dart';
 import 'package:provider/provider.dart';
 
-import 'package:prototyp/widgets/product_search_bar.dart';
+import 'package:prototyp/widgets/product_widgets/product_search_bar.dart';
 import 'package:prototyp/widgets/homepage/offers_section.dart';
 import 'package:prototyp/widgets/homepage/categories_section.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prototyp/model/imat/product.dart';
 import 'package:prototyp/model/imat/imat_data_handler.dart';
-import 'package:prototyp/widgets/product_card.dart';
+import 'package:prototyp/widgets/product_widgets/product_card.dart';
 
 class OffersSection extends StatelessWidget {
   final List<Product> offers;
