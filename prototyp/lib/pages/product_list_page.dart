@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prototyp/model/imat/imat_data_handler.dart';
-import 'package:prototyp/widgets/homepage/product_card.dart';
+import 'package:prototyp/widgets/product_card.dart';
 import 'package:provider/provider.dart';
 
 class ProductListPage extends StatelessWidget {
