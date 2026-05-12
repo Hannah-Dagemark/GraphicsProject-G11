@@ -3,7 +3,7 @@ import 'package:prototyp/model/imat/imat_data_handler.dart';
 import 'package:prototyp/pages/product_list_page.dart';
 import 'package:provider/provider.dart';
 
-import 'package:prototyp/widgets/homepage/search_bar_widget.dart';
+import 'package:prototyp/widgets/product_widgets/product_search_bar.dart';
 import 'package:prototyp/widgets/homepage/offers_section.dart';
 import 'package:prototyp/widgets/homepage/categories_section.dart';
 
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
         const Text("Vad vill du handla idag?"),
         const SizedBox(height: 16),
 
-        SearchBarWidget(
+        ProductSearchBar(
           onSearch: (query) {
             var results = iMat.findProducts(query);
 
