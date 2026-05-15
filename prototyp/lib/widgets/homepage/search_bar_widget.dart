@@ -13,21 +13,8 @@ class SearchBarWidget extends StatefulWidget {
 }
 
 class _SearchBarWidgetState extends State<SearchBarWidget> {
-  final TextEditingController _controller = TextEditingController();
   late stt.SpeechToText _speech;
   bool _isListening = false;
-
-  Future<void> _triggerSearch(String value) async {
-    final query = value.trim();
-
-    if (_isListening) {
-      setState(() => _isListening = false);
-      await _speech.stop();
-    }
-    if (query.isNotEmpty) {
-      widget.onSearch(query);
-    }
-  }
 
   @override
   void initState() {
@@ -35,63 +22,94 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     _speech = stt.SpeechToText();
   }
 
+  Future<void> _toggleListening(TextEditingController controller) async {
+    if (!_isListening) {
+      bool available = await _speech.initialize();
+
+      if (available) {
+        setState(() => _isListening = true);
+
+        _speech.listen(
+          onResult: (result) {
+            setState(() {
+              controller.text = result.recognizedWords;
+              controller.selection = TextSelection.fromPosition(
+                TextPosition(offset: controller.text.length),
+              );
+            });
+          },
+        );
+      }
+    } else {
+      setState(() => _isListening = false);
+      await _speech.stop();
+      widget.onSearch(controller.text);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final handler = context.watch<ImatDataHandler>();
+
+    print("Loaded products: ${handler.products.length} ");
+    print(
+      "First product: ${handler.products.isNotEmpty ? handler.products.first.name : "NONE"}",
+    );
     return Center(
       child: SizedBox(
         width: 300,
-        child: TextField(
-          controller: _controller,
-          textInputAction: TextInputAction.search,
-          onSubmitted: (value) async {
-            await _triggerSearch(value);
+        child: Autocomplete<String>(
+          optionsBuilder: (TextEditingValue textEditingValue) {
+            final text = textEditingValue.text.trim();
 
-            FocusScope.of(context).unfocus();
+            if (text.isEmpty) {
+              return const Iterable<String>.empty();
+            }
+
+            final products = context.watch<ImatDataHandler>().findProducts(
+              text,
+            );
+
+            return products.map((p) => p.name);
           },
-          decoration: InputDecoration(
-            hintText: "Sök efter varor",
-            prefixIcon: const Icon(Icons.search),
 
-            suffixIcon: IconButton(
-              icon: Icon(
-                _isListening ? Icons.mic : Icons.mic_off,
-                color: _isListening ? Colors.red : Colors.grey,
-              ),
-              onPressed: () async {
-                if (!_isListening) {
-                  bool available = await _speech.initialize(
-                    onStatus: (status) {
-                      if (status == 'done') {
-                        setState(() => _isListening = false);
-                      }
-                    },
-                  );
+          onSelected: (String selection) {
+            widget.onSearch(selection);
+          },
 
-                  if (available) {
-                    setState(() => _isListening = true);
+          fieldViewBuilder:
+              (context, controller, focusNode, onEditingComplete) {
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  textInputAction: TextInputAction.search,
 
-                    _speech.listen(
-                      onResult: (result) {
-                        setState(() {
-                          _controller.text = result.recognizedWords;
-                        });
-                      },
-                    );
-                  }
-                } else {
-                  await _triggerSearch(_controller.text);
-                }
+                  onSubmitted: (value) {
+                    widget.onSearch(value);
+                  },
+
+                  decoration: InputDecoration(
+                    hintText: "Sök efter varor",
+                    prefixIcon: const Icon(Icons.search),
+
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isListening ? Icons.mic : Icons.mic_off,
+                        color: _isListening ? Colors.red : Colors.grey,
+                      ),
+                      onPressed: () => _toggleListening(controller),
+                    ),
+
+                    filled: true,
+                    fillColor: Colors.white,
+
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                );
               },
-            ),
-
-            contentPadding: const EdgeInsets.symmetric(vertical: 10),
-            filled: true,
-            fillColor: Colors.white,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-          ),
         ),
       ),
     );

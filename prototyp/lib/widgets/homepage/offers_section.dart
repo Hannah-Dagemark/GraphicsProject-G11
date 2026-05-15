@@ -20,21 +20,38 @@ class OffersSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GestureDetector(
+        InkWell(
+          borderRadius: BorderRadius.circular(8),
           onTap: onTap,
-          child: const Text(
-            "Veckans erbjudanden",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          hoverColor: Colors.green.withOpacity(0.25),
+          splashColor: Colors.green.withOpacity(0.2),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+            child: const Text(
+              "Veckans erbjudanden",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
-        const SizedBox(height: 10),
-        Column(
-          children: offers.map((product) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: SizedBox(height: 120, child: ProductCard(product, iMat)),
-            );
-          }).toList(),
+
+        const SizedBox(height: 5),
+
+        SizedBox(
+          height: 100,
+
+          child: GridView.builder(
+            itemCount: offers.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 3,
+              mainAxisSpacing: 3,
+              childAspectRatio: 1.75,
+            ),
+            itemBuilder: (context, index) {
+              final product = offers[index];
+              return ProductCard(product, iMat);
+            },
+          ),
         ),
       ],
     );

@@ -29,10 +29,34 @@ class CategoriesSection extends StatelessWidget {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: [
-            _card(context, "Kött och fågel", ProductCategory.MEAT, iMat),
-            _card(context, "Grönsaker", ProductCategory.VEGETABLE_FRUIT, iMat),
-            _card(context, "Mejeri", ProductCategory.DAIRIES, iMat),
-            _card(context, "Bröd", ProductCategory.BREAD, iMat),
+            _card(
+              context,
+              "Kött och fågel",
+              ProductCategory.MEAT,
+              iMat,
+              "assets/images/meat.webp",
+            ),
+            _card(
+              context,
+              "Grönsaker",
+              ProductCategory.VEGETABLE_FRUIT,
+              iMat,
+              "assets/images/grönsaker.webp",
+            ),
+            _card(
+              context,
+              "Mejeri",
+              ProductCategory.DAIRIES,
+              iMat,
+              "assets/images/mejeri.webp",
+            ),
+            _card(
+              context,
+              "Bröd",
+              ProductCategory.BREAD,
+              iMat,
+              "assets/images/bröd.webp",
+            ),
           ],
         ),
       ],
@@ -44,13 +68,61 @@ class CategoriesSection extends StatelessWidget {
     String title,
     ProductCategory category,
     ImatDataHandler iMat,
+    String imagePath,
   ) {
-    return GestureDetector(
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
       onTap: () {
         var selection = iMat.findProductsByCategory(category);
         onNavigate(selection, title);
       },
-      child: Card(child: Center(child: Text(title))),
+      hoverColor: Colors.green.withOpacity(0.25),
+      splashColor: Colors.green.withOpacity(0.25),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 12,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Card(
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(12),
+                  ),
+                  child: Image.asset(imagePath, fit: BoxFit.cover),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+
+                child: Center(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
