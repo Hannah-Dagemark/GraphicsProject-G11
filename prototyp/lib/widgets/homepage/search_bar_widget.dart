@@ -51,10 +51,6 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   Widget build(BuildContext context) {
     final handler = context.watch<ImatDataHandler>();
 
-    print("Loaded products: ${handler.products.length} ");
-    print(
-      "First product: ${handler.products.isNotEmpty ? handler.products.first.name : "NONE"}",
-    );
     return Center(
       child: SizedBox(
         width: 300,
@@ -66,9 +62,8 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               return const Iterable<String>.empty();
             }
 
-            final products = context.watch<ImatDataHandler>().findProducts(
-              text,
-            );
+            final handler = context.read<ImatDataHandler>();
+            final products = handler.findProducts(text);
 
             return products.map((p) => p.name);
           },
