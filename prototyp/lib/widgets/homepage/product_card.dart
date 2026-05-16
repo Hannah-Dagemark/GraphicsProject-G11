@@ -12,25 +12,55 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(AppTheme.paddingSmall),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: iMat.getImage(product)),
-            Text(
-              product.name,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: AppTheme.paddingSmall),
-            Text(
-              '${product.price.toStringAsFixed(2)} ${product.unit}',
-              style: const TextStyle(fontSize: 14),
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: () {
+        // Optional: navigate to product details later
+      },
+      hoverColor: Colors.green.withOpacity(0.25),
+      splashColor: Colors.green.withOpacity(0.25),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 8,
+              offset: const Offset(0, 4),
             ),
           ],
+        ),
+        child: Card(
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(AppTheme.paddingSmall),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: iMat.getImage(product)),
+
+                Text(
+                  product.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+
+                const SizedBox(height: AppTheme.paddingSmall),
+
+                Text(
+                  '${product.price.toStringAsFixed(2)} ${product.unit}',
+                  style: const TextStyle(fontSize: 14),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
