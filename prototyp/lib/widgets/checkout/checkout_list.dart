@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prototyp/widgets/checkout/purchase_base.dart';
 
-class PurchaseList extends StatelessWidget {
-  const PurchaseList({super.key});
+class CheckoutList extends StatelessWidget {
+  const CheckoutList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +13,14 @@ class PurchaseList extends StatelessWidget {
           "Din Kundvagn",
           style: TextStyle(fontSize: 25)
         ),
-        PurchaseBase(child: Card(child: Padding(padding: EdgeInsets.all(20), child: Column(
+        Card(child: Padding(padding: EdgeInsets.all(20), child: Column(
           children: [
             Card(child: Row(
               children: [
                 SizedBox(width: 12),
-                TextButton(onPressed: () {print('hi im a button');}, child: Text('+')),
+                TextButton(onPressed: () {}, child: Text('-')),
                 Text("1"),
-                TextButton(onPressed: () {print('hi im a button');}, child: Text('-')),
+                TextButton(onPressed: () {}, child: Text('+')),
                 SizedBox(width: 12),
                 Spacer(),
                 Text("Sak"),
@@ -31,9 +30,9 @@ class PurchaseList extends StatelessWidget {
             Card(child: Row(
               children: [
                 SizedBox(width: 12),
-                TextButton(onPressed: () {print('hi im a button');}, child: Text('+')),
+                TextButton(onPressed: () {}, child: Text('-')),
                 Text("1"),
-                TextButton(onPressed: () {print('hi im a button');}, child: Text('-')),
+                TextButton(onPressed: () {}, child: Text('+')),
                 SizedBox(width: 12),
                 Spacer(),
                 Text("Sak"),
@@ -43,9 +42,9 @@ class PurchaseList extends StatelessWidget {
             Card(child: Row(
               children: [
                 SizedBox(width: 12),
-                TextButton(onPressed: () {print('hi im a button');}, child: Text('+')),
+                TextButton(onPressed: () {}, child: Text('-')),
                 Text("1"),
-                TextButton(onPressed: () {print('hi im a button');}, child: Text('-')),
+                TextButton(onPressed: () {}, child: Text('+')),
                 SizedBox(width: 16),
                 Spacer(),
                 Text("Sak"),
@@ -53,7 +52,7 @@ class PurchaseList extends StatelessWidget {
               ],
             ))
           ],)
-        ))),
+        )),
         Row(children: [
           Text("Totalt: X kr", style: TextStyle(fontSize: 15))
         ],)
