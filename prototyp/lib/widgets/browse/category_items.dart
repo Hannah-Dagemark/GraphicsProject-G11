@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:prototyp/helpers/item_overlay.dart';
 import 'package:prototyp/model/browsecategory_model.dart';
 import 'package:prototyp/model/imat/imat_data_handler.dart';
 import 'package:prototyp/widgets/browse/category_item.dart';
+import 'package:prototyp/widgets/product_detail.dart';
 import 'package:provider/provider.dart';
 
 class CategoryItems extends StatelessWidget {
@@ -20,12 +22,28 @@ class CategoryItems extends StatelessWidget {
           for (final product in imatDataHandler.findProductsByCategory(
             browsecategoryModel.currentCategory,
           ))
-            CategoryItem(product: product),
+            GestureDetector(
+              onTap: () {
+                ItemOverlay.show(
+                  context: context,
+                  overlayWidget: ProductDetail(product: product),
+                );
+              },
+              child: CategoryItem(product: product),
+            ),
         ] else ...[
           for (final product in imatDataHandler.findProducts(
             browsecategoryModel.currentSearch,
           ))
-            CategoryItem(product: product),
+            GestureDetector(
+              onTap: () {
+                ItemOverlay.show(
+                  context: context,
+                  overlayWidget: ProductDetail(product: product),
+                );
+              },
+              child: CategoryItem(product: product),
+            ),
         ],
       ],
     );

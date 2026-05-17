@@ -6,9 +6,9 @@ import 'package:prototyp/pages/browse.dart';
 import 'package:prototyp/pages/checkout.dart';
 import 'package:prototyp/pages/home.dart';
 import 'package:prototyp/pages/profile.dart';
+import 'package:prototyp/widgets/app_bar_actions.dart';
+import 'package:prototyp/widgets/cart_overlay.dart';
 import 'package:prototyp/widgets/logo.dart';
-import 'package:prototyp/widgets/navbar.dart';
-import 'package:prototyp/widgets/zoom_control.dart';
 import 'package:provider/provider.dart';
 
 class _PageScrollWrapper extends StatelessWidget {
@@ -30,22 +30,22 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appModel = Provider.of<AppModel>(context, listen: true);
-    var currentPage = appModel.currentPage;
+    var pageWidget = _PageScrollWrapper(
+      child: _getPageWidget(appModel.currentPage),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorScheme.of(context).inversePrimary,
         title: Logo(),
-        actions: [ZoomControl()],
+        actions: [AppBarActions()],
+        actionsPadding: .all(AppTheme.paddingSmall),
+        titleSpacing: AppTheme.paddingSmall,
       ),
       body: SizedBox.expand(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Navbar(),
-              _PageScrollWrapper(child: _getPageWidget(currentPage)),
-            ],
-          ),
+        child: Stack(
+          children: appModel.cartOpen
+              ? [pageWidget, CartOverlay()]
+              : [pageWidget],
         ),
       ),
     );
