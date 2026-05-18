@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CheckoutController extends ChangeNotifier {
-  bool hasCheckedOut = false;
+  int stage = 1;
 
-  void checkout() {
-    hasCheckedOut = true;
+  void nextPage() {
+    stage += 1;
     notifyListeners();
   }
 
   void returnPage() {
-    hasCheckedOut = false;
+    stage -= 1;
     notifyListeners();
   }
 }

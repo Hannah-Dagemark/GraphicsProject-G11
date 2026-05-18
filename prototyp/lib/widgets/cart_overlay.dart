@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prototyp/app_theme.dart';
-import 'package:prototyp/widgets/checkout/purchase_list.dart';
+import 'package:prototyp/widgets/checkout/checkout_list.dart';
 
 class CartOverlay extends StatelessWidget {
   const CartOverlay({super.key});
@@ -26,7 +26,7 @@ class CartOverlay extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(color: AppTheme.colorScheme.onPrimary),
             padding: .all(AppTheme.paddingMedium),
-            child: PurchaseList(),
+            child: CheckoutList(),
           ),
         ),
       ],
